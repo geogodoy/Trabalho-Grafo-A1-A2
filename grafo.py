@@ -20,6 +20,7 @@ def dijkstra(graph, start, end):
 
 #Método que retorna os caminhos menores
 def menores_caminhos(entregas,graph,job):
+    #associa o primeiro elemento ao A no caso
     inicio = list(graph.keys())[0];
     
     #para cada destino das entregas
@@ -32,9 +33,11 @@ def menores_caminhos(entregas,graph,job):
             tempovolta, caminho_volta = dijkstra(graph,destino, inicio)#complexidade: O(idem)
             #Calcula o tempo final baseado nos tempos de ida e volta dos destinos
             tempofinal = tempo_ida + tempovolta#complexidade:O(1)
+            #
             tempoinicial = int(entregas[destino][0])#complexidade:O(1)
             lucroentrega = int(entregas[destino][1])#complexidade:O(1)
             caminho = list([caminho_ida] + [caminho_volta])#complexidade:O(1)
+            #armazena todos os caminhos
             job.append(Job(tempoinicial, tempoinicial + tempofinal, lucroentrega, caminho))#complexidade:O(1)
         except:
             print("Não há caminho para a entrega : ",destino,"\n")
